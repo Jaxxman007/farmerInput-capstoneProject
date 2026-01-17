@@ -8,8 +8,9 @@ const inputLogSchema = new mongoose.Schema({
   unit_price: { type: Number, required: true },
   purchase_date: { type: Date, required: true },
   notes: { type: String },
-  supplier_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: true },
+  supplier_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: false },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 }, { timestamps: true });
 
 module.exports = mongoose.model('InputLog', inputLogSchema);
+
