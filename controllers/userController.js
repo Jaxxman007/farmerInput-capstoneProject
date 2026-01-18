@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const User = require("../models/User");
 const Farm = require("../models/Farm")
 
@@ -19,21 +20,17 @@ const updateProfile = async (req, res, next) => {
 
     const { full_name, email, location, farm_size, phone, primary_crops } = req.body;
 
-    if (email && email !== req.user.email) {
-      const exists = await User.findOne({ email }).lean();
-      if (exists) return res.status(409).json({ error: 'Email already in use' });
-    }
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { $set: { full_name, email, phone, location } },
+      { full_name, email, phone, location },
       { new: true }
     ).lean();
 
     //update farm
     const updatedFarm = await Farm.findOneAndUpdate(
       { user_id: userId },
-      { $set: { farm_size, primary_crops } },
+      { farm_size, primary_crops },
       { new: true }
     ).lean();
 
