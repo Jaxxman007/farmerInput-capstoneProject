@@ -58,6 +58,10 @@ exports.logInput = async (req, res, next) => {
 // PUT /api/inputs/log/:id
 exports.updateInputLog = async (req, res, next) => {
   try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(is)) {
+      return res.status(400).json({ message: 'Invalid log Id'})
+    }
     const log = await InputLog.findOneAndUpdate(
       { _id: req.params.id, user: req.user._id },
       req.body,
@@ -80,3 +84,4 @@ exports.deleteInputLog = async (req, res, next) => {
     next(err);
   }
 };
+
