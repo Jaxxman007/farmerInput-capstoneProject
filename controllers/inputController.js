@@ -1,4 +1,4 @@
-// controllers/inputController.js
+const mongoose = require('mongoose');
 const InputLog = require('../models/InputLog');
 
 // GET /api/inputs/categories
@@ -84,4 +84,5 @@ exports.deleteInputLog = async (req, res, next) => {
     next(err);
   }
 };
+
 
