@@ -5,8 +5,9 @@ const farmSchema = new mongoose.Schema(
  size_hectares: { type: Number, default: 0 }, 
  primary_crops: [{ type: String }], 
  livestock: [{ type: String }] }, 
- farm_size: [{ type: string}], { timestamps: true }
+ farm_size: [{ type: String}], { timestamps: true }
 );
 
 module.exports = mongoose.model("Farm", farmSchema);
+
 
